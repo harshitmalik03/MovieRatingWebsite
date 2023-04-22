@@ -4,9 +4,14 @@ import { Carousel } from 'react-responsive-carousel';
 import { Link } from 'react-router-dom';
 import "./Home.css";
 import MovieList from '../../components/MovieList/MovieList';
+import { useAuth0 } from '@auth0/auth0-react';
+import LoginLogout from '../LoginLogout/LoginLogout';
 
 const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);
+    const {isAuthenticated }= useAuth0();
+    const {user} = useAuth0();
+
 
     useEffect(() => {
         fetch("https://api.themoviedb.org/3/movie/popular?api_key=80d06f5aca02f471f8acd36b546f0787&language=en-US&page=1ss")
@@ -16,7 +21,9 @@ const Home = () => {
 
   return (
     <>
-            <div className="poster">
+    {isAuthenticated
+    ?
+    <div className="poster">
                 <Carousel
                     showThumbs={false}
                     autoPlay={true}
@@ -47,6 +54,11 @@ const Home = () => {
                 </Carousel>
                 <MovieList />
             </div>
+            :
+            <LoginLogout/>
+    }
+
+            
         </>
   )
 }
