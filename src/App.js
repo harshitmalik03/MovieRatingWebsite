@@ -4,6 +4,8 @@ import Header from './components/Header/Header';
 import Home from './Pages/Home/Home';
 import MovieList from './components/MovieList/MovieList';
 import Movie from './Pages/movieDetail/Movie';
+import LoginLogout from './Pages/LoginLogout/LoginLogout';
+import Profile from './Pages/Profile/Profile';
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
           <Header/>
           <Routes>
             <Route index element={<Home/>}></Route>
+            <Route path="login" element={<LoginLogout/>}></Route>
             <Route path="movie/:id" element={<Movie/>}></Route>
             <Route path = "movies/:type" element={<MovieList/>}></Route>
+            <Route path = "profile/:id" element={<Profile/>}></Route>
             <Route path = "/*" element={<h1>error page</h1>}></Route>
           </Routes>
         </Router>
