@@ -1,7 +1,9 @@
 import { useAuth0 } from '@auth0/auth0-react';
-import "./LoginLogout.css"
-import "./back.jpg"
-import React from 'react'
+import "./LoginLogout.css";
+import bgimg from "./back.jpg";
+import logoimg from "./logo (1).png";
+import React from 'react';
+import marvel from './marvel.mp4';
 
 const LoginLogout = () => {
 
@@ -12,11 +14,16 @@ const LoginLogout = () => {
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-48 m-auto" onClick={() => {loginWithRedirect()}}>Login</button> */}
       <section class="container">
         <div class="head">
-          <img src="./logo (1).png" alt="logo" />
+          <img src={logoimg} alt="logo" />
         </div>
       </section>
       <section class="banner">
-        <img src="./back.jpg" alt="background" className="fit" />
+
+        {/* <img src={bgimg} alt="background" className="fit" /> */}
+        <video autoPlay loop muted className="fit">
+          <source src={marvel} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
         <div class="box">
           <div class="heading">
             <h2>Lights. Camera. Opinions.</h2>
@@ -24,8 +31,8 @@ const LoginLogout = () => {
             <p>Ready to review?</p>
           </div>
           <div class="search">
-            <button onClick={() => { loginWithRedirect() }}>Login</button>
-            <button onClick={() => { loginWithRedirect() }}>SignUp</button>
+            <button onClick={() => { loginWithRedirect() }}>Get Started</button>
+            {/* <button onClick={() => { loginWithRedirect() }}>SignUp</button> */}
           </div>
         </div>
       </section>
