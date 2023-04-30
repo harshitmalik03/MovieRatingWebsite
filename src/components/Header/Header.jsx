@@ -35,7 +35,6 @@ const Header = () => {
 
   const { user } = useAuth0();
 
-  console.log(user);
 
   function toggleDropdown() {
     var dropdown = document.getElementById("userDropdown");

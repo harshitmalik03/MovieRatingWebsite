@@ -1,12 +1,46 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, redirect } from 'react-router-dom';
 import "./Movie.css"
+import { TextField } from '@mui/material';
+import { Box } from '@mui/system';
+import { useAuth0 } from '@auth0/auth0-react';
+import { CommentSection} from 'react-comments-section';
+
+
 
 const Movie = () => {
 
 
     const [currentMovieDetail, setMovie] = useState()
     const { id } = useParams()
+    const {user, isLoading, isAuthenticated} = useAuth0();
+    const goBack = () => {
+        console.log("heading back");        
+        window.location.replace("/login");
+    }
+
+  useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+        console.log("go back");
+        goBack();
+    }
+  }, [isLoading, isAuthenticated]);
+
+
+    console.log(user);
+
+
+    const data =[
+    {
+      userId: '001',
+      comId: '001',
+      fullName: 'Dummy User',
+      userProfile: '',
+      text: 'Dummy Review',
+      avatarUrl: 'nopic',
+      replies: []
+    }
+  ]
 
     useEffect(() => {
         getData()
@@ -28,9 +62,14 @@ const Movie = () => {
     // }, [])
 
 
-
   return (
-    <div className="movie">
+    <>
+    {isAuthenticated
+    ?
+    (
+
+
+        <div className="movie">
             <div className="movie__intro">
                 <img className="movie__backdrop" src={`https://image.tmdb.org/t/p/original${currentMovieDetail ? currentMovieDetail.backdrop_path : ""}`} />
             </div>
@@ -69,33 +108,47 @@ const Movie = () => {
                     
                 </div>
             </div>
-            <div className="movie__links">
-                <div className="movie__heading">Useful Links</div>
-                {
-                    currentMovieDetail && currentMovieDetail.homepage && <a href={currentMovieDetail.homepage} target="_blank" style={{textDecoration: "none"}}><p><span className="movie__homeButton movie__Button">Homepage <i className="newTab fas fa-external-link-alt"></i></span></p></a>
-                }
-                {
-                    currentMovieDetail && currentMovieDetail.imdb_id && <a href={"https://www.imdb.com/title/" + currentMovieDetail.imdb_id} target="_blank" style={{textDecoration: "none"}}><p><span className="movie__imdbButton movie__Button">IMDb<i className="newTab fas fa-external-link-alt"></i></span></p></a>
-                }
-            </div>
-            <div className="movie__heading">Production companies</div>
-            <div className="movie__production">
-                {
-                    currentMovieDetail && currentMovieDetail.production_companies && currentMovieDetail.production_companies.map(company => (
-                        <>
-                            {
-                                company.logo_path 
-                                && 
-                                <span className="productionCompanyImage">
-                                    <img className="movie__productionComapany" src={"https://image.tmdb.org/t/p/original" + company.logo_path} />
-                                    <span>{company.name}</span>
-                                </span>
-                            }
-                        </>
-                    ))
-                }
-            </div>
+
+            
+
+            <div style={{ width: '80%', backgroundColor: 'black', padding: '20px', borderRadius: '8px' }}>
+                
+                <CommentSection
+                    currentUser={{
+                        currentUserId: user.email,
+                        currentUserImg:
+                        user.picture,
+                        currentUserProfile: user.email,
+                        currentUserFullName: user.given_name + user.family_name,
+                    }}
+                    logIn={{
+                        loginLink: 'http://localhost:3001/',
+                        signupLink: 'http://localhost:3001/',
+                    }}
+                    commentData={data}
+                    onSubmitAction={(data) => console.log('check submit, ', data)}
+                    currentData={(data) => {
+                        console.log('curent data', data);
+                    }}
+                    />
+                    </div>
+
+                    </div>
+
+        
+    )
+    
+    :
+    ( 
+        <div>
+            
         </div>
+        )
+    }
+
+        </>
+
+        
   )
 }
 
