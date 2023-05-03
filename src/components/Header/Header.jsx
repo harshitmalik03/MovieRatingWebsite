@@ -16,6 +16,7 @@ import Tooltip from '@mui/material/Tooltip';
 import PersonAdd from '@mui/icons-material/PersonAdd';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
+import logoimg1 from "./logo-no-background.png";
 
 const Header = () => {
 
@@ -49,7 +50,9 @@ const Header = () => {
         (
           <div className="header">
             <div className="headerLeft">
-              <Link to="/"><img className="header__icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" /></Link>
+              {/* <Link to="/"><img className="header__icon" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png" /></Link> */}
+              <img className="header__icon" src={logoimg1} alt="logo" />
+              {/* <Link to="/"><img className="header__icon" src="{logoimg1}" /></Link> */}
               <Link to="/movies/popular" style={{ textDecoration: "none" }}><span>Popular</span></Link>
               <Link to="/movies/top_rated" style={{ textDecoration: "none" }}><span>Top Rated</span></Link>
               <Link to="/movies/upcoming" style={{ textDecoration: "none" }}><span>Upcoming</span></Link>

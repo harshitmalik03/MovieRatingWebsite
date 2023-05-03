@@ -4,6 +4,7 @@ import bgimg from "./back.jpg";
 import logoimg from "./logo (1).png";
 import React from 'react';
 import marvel from './marvel.mp4';
+import logoimg1 from "./logo-no-background.png";
 
 const LoginLogout = () => {
 
@@ -14,7 +15,7 @@ const LoginLogout = () => {
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-48 m-auto" onClick={() => {loginWithRedirect()}}>Login</button> */}
       <section class="container">
         <div class="head">
-          <img src={logoimg} alt="logo" />
+          <img src={logoimg1} alt="logo" />
         </div>
       </section>
       <section class="banner">

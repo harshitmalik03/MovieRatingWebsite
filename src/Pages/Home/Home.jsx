@@ -7,6 +7,7 @@ import MovieList from '../../components/MovieList/MovieList';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginLogout from '../LoginLogout/LoginLogout';
 
+
 const Home = () => {
     const [popularMovies, setPopularMovies] = useState([]);
     const {isAuthenticated }= useAuth0();
@@ -36,6 +37,7 @@ const Home = () => {
                             <Link style={{textDecoration:"none",color:"white"}} to={`/movie/${movie.id}`} >
                                 <div className="posterImage">
                                     <img src={`https://image.tmdb.org/t/p/original${movie && movie.backdrop_path}`} />
+                                    
                                 </div>
                                 <div className="posterImage__overlay">
                                     <div className="posterImage__title">{movie ? movie.original_title: ""}</div>
