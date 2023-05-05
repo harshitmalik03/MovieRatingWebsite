@@ -27,7 +27,7 @@ const Movie = () => {
   }, [isLoading, isAuthenticated]);
 
 
-    console.log(user);
+
 
 
     const data =[

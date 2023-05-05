@@ -26,8 +26,9 @@ const LoginLogout = () => {
           Your browser does not support the video tag.
         </video>
         <div class="box">
-          <div class="heading">
-            <h2>Lights. Camera. Opinions.</h2>
+          <div class="heading font-extrabold">
+            <h2>LIGHTS. CAMERA.</h2>
+            <h2>CRITIQ</h2>
             <h5>Discover, rate, and discuss your favorite movies and TV shows.</h5>
             <p>Ready to review?</p>
           </div>

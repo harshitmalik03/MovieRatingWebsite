@@ -110,16 +110,18 @@ const Header = () => {
                   transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                   anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                  <Link to="/profile">
+                  <Link to={`/profile/${user.id}`}>
 
                     <MenuItem onClick={handleClose}>
 
                       <Avatar /> Profile
                     </MenuItem>
                   </Link>
+                  <Link to={`/profile/${user.id}`}>
                   <MenuItem onClick={handleClose}>
                     <Avatar /> My account
                   </MenuItem>
+                  </Link>
                   <Divider />
                   {/* <MenuItem onClick={handleClose}>
           <ListItemIcon>
@@ -127,12 +129,14 @@ const Header = () => {
           </ListItemIcon>
           Add another account
         </MenuItem> */}
+        <Link to={`/profile/${user.id}`}>
                   <MenuItem onClick={handleClose}>
                     <ListItemIcon>
                       <Settings fontSize="small" />
                     </ListItemIcon>
                     Settings
                   </MenuItem>
+                  </Link>
                   <MenuItem onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}>
                     <ListItemIcon>
                       <Logout fontSize="small" />
